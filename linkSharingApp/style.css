@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  --primarycolor: #633cff;
+  --secondarycolor: #efebff;
+  --font: "Open Sans", sans-serif;
+}
+body {
+  font-family: var(--font);
+}
+.navbar-container,
+.center-navbar-container {
+  display: flex;
+  align-items: center;
+}
+.navbar-container {
+  padding: 10px 15px;
+  justify-content: space-between;
+}
+.tab-name,
+.navbar-heading {
+  display: none;
+}
+.devlinks-icon {
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+  padding: 10px;
+  border-radius: 10px;
+}
+.center-navbar-container {
+  gap: 45px;
+}
+
+.activetab {
+  background-color: var(--secondarycolor);
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+.navbar-icons {
+  color: var(--primarycolor);
+}
+.right-navbar-container {
+  border: 2px solid var(--primarycolor);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.center-navbar-container,
+.right-navbar-container {
+  cursor: pointer;
+}
+@media screen and (min-width: 650px) {
+  .tab-name,
+  .navbar-heading {
+    display: contents;
+  }
+  .navbar-heading {
+    font-weight: 700;
+  }
+  .center-navbar-container {
+    gap: 10px;
+  }
+  .navbar-container {
+    padding: 35px 25px;
+    justify-content: space-evenly;
+  }
+}
