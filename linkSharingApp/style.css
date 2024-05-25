@@ -10,20 +10,32 @@
 }
 body {
   font-family: var(--font);
+  background-color: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.parent-container {
+  padding: 10px 25px;
+  width: 98vw;
+  max-width: 1280px;
 }
 .navbar-container,
 .center-navbar-container {
+  padding: 10px;
   display: flex;
   align-items: center;
 }
 .navbar-container {
-  padding: 10px 25px;
+  width: 100%;
   justify-content: space-between;
+  background-color: white;
 }
 .tab-name,
 .navbar-heading {
   display: none;
 }
+
 .devlinks-icon {
   background-color: var(--primarycolor);
   color: var(--secondarycolor);
@@ -67,6 +79,17 @@ body {
   color: rgb(76, 76, 76);
   font-weight: 500;
 }
+.share-app-content-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  justify-content: space-between;
+  height: 100vh;
+}
+.right-content-container {
+  width: 100%;
+  background-color: white;
+}
 .empty-phone-img-container {
   background: url("./svgviewer-png-output.png") no-repeat;
   height: 635px;
@@ -75,11 +98,9 @@ body {
   justify-content: center;
   padding: 68px 15px 0 15px;
 }
-.share-app-content-container {
-  display: flex;
-  justify-content: center;
-}
-.left-content-container {
+
+.left-content-container,
+.mobile-background-container {
   display: none;
   user-select: none;
 }
@@ -128,6 +149,7 @@ body {
   border-radius: 5px;
   margin: 20px auto;
 }
+
 @media screen and (min-width: 700px) {
   .tab-name,
   .navbar-heading {
@@ -135,24 +157,37 @@ body {
   }
   .navbar-heading {
     font-weight: 700;
-    font-size: 1.8rem;
   }
   .center-navbar-container {
     gap: 10px;
   }
   .parent-container {
-    padding: 30px 25px;
+    padding: 24px 25px;
   }
   .devlinks-icon {
     font-size: 20px;
   }
   .navbar-container {
-    justify-content: space-evenly;
+    padding: 10px 18px;
+    justify-content: space-between;
   }
 }
 
 @media screen and (min-width: 900px) {
-  .left-content-container {
+  .left-content-container,
+  .mobile-background-container {
     display: block;
+  }
+  .share-app-content-container {
+    gap: 24px;
+  }
+  .mobile-background-container {
+    background-color: white;
+    padding: 12px 20px;
+    border-radius: 20px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
