@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -6,8 +7,10 @@
   --primarycolor: #633cff;
   --secondarycolor: #efebff;
   --testrialcolor: #eeeeee;
-  --bgcolor: #f2f2f2;
-  --font: "Open Sans", sans-serif;
+
+  --bgcolor: #fafafa;
+  --skcolor: #969696;
+  --font: "Instrument Sans", sans-serif;
 }
 body {
   font-family: var(--font);
@@ -90,6 +93,7 @@ body {
 .right-content-container {
   width: 100%;
   background-color: white;
+  padding: 40px 40px 24px;
 }
 .empty-phone-img-container {
   background: url("./svgviewer-png-output.png") no-repeat;
@@ -135,7 +139,7 @@ body {
 .phone-links-heading {
   font-size: 12px;
   font-family: var(--font);
-  color: rgb(150, 150, 150);
+  color: var(--skcolor);
 }
 .phone-links-container {
   padding: 25px 0;
@@ -150,7 +154,29 @@ body {
   border-radius: 5px;
   margin: 20px auto;
 }
-
+.right-hero-heading {
+  font-family: var(--font);
+  font-size: 2rem;
+}
+.right-description-heading {
+  color: gray;
+  line-height: 2.8rem;
+}
+.add-link-btn {
+  color: var(--primarycolor);
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  margin-top: 50px;
+  border: 1px solid var(--primarycolor);
+  border-radius: 8px;
+  transition: 0.2s linear;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+.add-link-btn:hover {
+  background-color: var(--secondarycolor);
+}
 @media screen and (min-width: 700px) {
   .tab-name,
   .navbar-heading {
@@ -185,7 +211,7 @@ body {
   .mobile-background-container {
     background-color: white;
     padding: 12px 20px;
-    border-radius: 20px;
+
     width: 60%;
     display: flex;
     justify-content: center;
