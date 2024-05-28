@@ -7,7 +7,6 @@
   --primarycolor: #633cff;
   --secondarycolor: #efebff;
   --testrialcolor: #eeeeee;
-
   --bgcolor: #fafafa;
   --skcolor: #969696;
   --font: "Instrument Sans", sans-serif;
@@ -80,7 +79,7 @@ body {
   align-items: center;
 }
 .tab-name {
-  color: rgb(76, 76, 76);
+  color: rgb(78, 78, 78);
   font-weight: 500;
 }
 .share-app-content-container {
