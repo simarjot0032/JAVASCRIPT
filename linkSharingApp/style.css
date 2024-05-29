@@ -10,6 +10,7 @@
   --bgcolor: #fafafa;
   --skcolor: #969696;
   --font: "Instrument Sans", sans-serif;
+  --fontcolor: rgb(78, 78, 78);
 }
 body {
   font-family: var(--font);
@@ -79,7 +80,7 @@ body {
   align-items: center;
 }
 .tab-name {
-  color: rgb(78, 78, 78);
+  color: var(--fontcolor);
   font-weight: 500;
 }
 .share-app-content-container {
@@ -175,6 +176,27 @@ body {
 }
 .add-link-btn:hover {
   background-color: var(--secondarycolor);
+}
+.get-started-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-top: 40px;
+}
+.get-started-img {
+  max-height: 150px;
+}
+.get-started-heading {
+  font-size: 2rem;
+  line-height: 4.2rem;
+}
+.get-started-description {
+  text-align: center;
+  max-width: 75%;
+  font-size: 1.05rem;
+  color: var(--fontcolor);
 }
 @media screen and (min-width: 700px) {
   .tab-name,
