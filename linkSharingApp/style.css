@@ -159,7 +159,7 @@ body {
   font-size: 2rem;
 }
 .right-description-heading {
-  color: gray;
+  color: var(--fontcolor);
   line-height: 2.8rem;
 }
 .add-link-btn {
@@ -178,7 +178,7 @@ body {
   background-color: var(--secondarycolor);
 }
 .get-started-container {
-  height: 100%;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,6 +197,21 @@ body {
   max-width: 75%;
   font-size: 1.05rem;
   color: var(--fontcolor);
+}
+.save-container {
+  border-top: 1px solid rgb(207, 207, 207);
+  display: flex;
+  justify-content: end;
+  padding-top: 25px;
+}
+.save-btn {
+  padding: 12px 30px;
+  border-radius: 8px;
+  background-color: var(--primarycolor);
+  border: 0;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
 }
 @media screen and (min-width: 700px) {
   .tab-name,
