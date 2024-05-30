@@ -217,6 +217,32 @@ body {
   max-height: 500px;
   overflow: auto;
 }
+.user-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+.user-input-header {
+  display: flex;
+  justify-content: space-between;
+}
+.link-heading {
+  font-size: 1rem;
+  color: grey;
+  font-weight: 800;
+  font-family: var(--font);
+}
+.link-remove-btn {
+  background-color: transparent;
+  border: 0;
+  font-size: 1rem;
+  color: var(--fontcolor);
+  transition: all 0.2s linear;
+}
+.link-remove-btn:hover {
+  color: var(--primarycolor);
+}
 @media screen and (min-width: 700px) {
   .tab-name,
   .navbar-heading {
