@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 let getStarted = document.querySelector(".get-started-container");
 let addNewLink = document.querySelector(".add-link-btn");
 let inputContainer = document.querySelector(".link-user-input-container");
@@ -9,8 +9,12 @@ function displayNone(container) {
   container.style.display = "none";
 }
 function removeInput(index) {
+  console.log(click);
   remove[index].parentElement.parentElement.remove();
   click--;
+  if (click <= 5) {
+    addNewLink.removeAttribute("disabled");
+  }
 }
 function createLinkInputForm() {
   inputContainer.innerHTML += `
