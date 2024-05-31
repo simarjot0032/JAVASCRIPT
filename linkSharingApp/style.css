@@ -222,7 +222,6 @@ body {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-
   justify-content: start;
 }
 .user-input-header {
