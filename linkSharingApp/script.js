@@ -10,7 +10,6 @@ function displayNone(container) {
   container.style.display = "none";
 }
 function removeInput(index) {
-  console.log(click);
   remove[index].parentElement.parentElement.remove();
   linkTab[index].remove();
   click--;
