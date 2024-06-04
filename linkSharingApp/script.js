@@ -1,14 +1,29 @@
 "use strict";
 // varibales section
+let profileTab = document.querySelector("#profiletab");
+let linkTabNavigation = document.querySelector("#linktab");
+let linkaddSection = document.querySelector(".linkadd-form-section");
 let getStarted = document.querySelector(".get-started-container");
 let addNewLink = document.querySelector(".add-link-btn");
 let inputContainer = document.querySelector(".link-user-input-container");
 let realLinkContainer = document.querySelector(".real-links-container");
-let click = 0;
+let color = ["black", "#0077B5", "red", "#1877f2", "#f48024"];
 let remove = document.querySelectorAll(".link-remove-btn");
+let click = 0;
 let linkTab;
 let selectTag;
-let color = ["black", "#0077B5", "red", "#1877f2", "#f48024"];
+
+// navigation section
+profileTab.addEventListener("click", () => {
+  profileTab.classList.add("activetab");
+  linkTabNavigation.classList.remove("activetab");
+  displayNone(linkaddSection);
+});
+linkTabNavigation.addEventListener("click", () => {
+  profileTab.classList.remove("activetab");
+  linkTabNavigation.classList.add("acativetab");
+  linkaddSection.style.display = "block";
+});
 // Function Section
 function displayNone(container) {
   container.style.display = "none";

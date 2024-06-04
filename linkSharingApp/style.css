@@ -53,7 +53,7 @@ button {
 }
 .activetab {
   background-color: var(--secondarycolor);
-  padding: 10px 25px;
+
   border-radius: 5px;
 }
 .navbar-icons {
@@ -87,13 +87,16 @@ button {
 .tab-container {
   display: flex;
   gap: 10px;
+  padding: 10px 25px;
   align-items: center;
 }
 .tab-name {
   color: var(--fontcolor);
   font-weight: 500;
 }
-
+.tab-container:hover {
+  background-color: var(--secondarycolor);
+}
 .share-app-content-container {
   display: flex;
   justify-content: center;
