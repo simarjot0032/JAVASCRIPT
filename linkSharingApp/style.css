@@ -286,7 +286,6 @@ button {
   background-color: black;
   height: 44px;
   width: 236px;
-  border-radius: 10px;
 }
 .link-tab-content {
   display: flex;
