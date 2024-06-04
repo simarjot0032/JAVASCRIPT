@@ -19,8 +19,10 @@ body {
   flex-direction: column;
   align-items: center;
 }
+button {
+  cursor: pointer;
+}
 .parent-container {
-  padding: 10px 25px;
   width: 98vw;
   max-width: 1280px;
 }
@@ -57,18 +59,26 @@ body {
 .navbar-icons {
   color: var(--primarycolor);
 }
-.right-navbar-container {
-  border: 2px solid var(--primarycolor);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 10px 15px;
-  border-radius: 10px;
-}
 .center-navbar-container,
 .right-navbar-container {
   cursor: pointer;
 }
+.right-navbar-container {
+  padding: 10px 15px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid var(--primarycolor);
+  transition: all 0.2s linear;
+}
+.right-navbar-container:hover {
+  background-color: var(--secondarycolor);
+}
+#preview-tab {
+  display: none;
+}
+
 .left-navbar-container {
   display: flex;
   align-items: center;
@@ -83,6 +93,7 @@ body {
   color: var(--fontcolor);
   font-weight: 500;
 }
+
 .share-app-content-container {
   display: flex;
   justify-content: center;
@@ -191,6 +202,12 @@ body {
 .add-link-btn:hover {
   background-color: var(--secondarycolor);
 }
+.add-link-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  color: #666;
+  border: none;
+}
 .get-started-container {
   min-height: 400px;
   display: flex;
@@ -269,7 +286,6 @@ body {
   background-color: black;
   height: 44px;
   width: 236px;
-  border-radius: 10px;
 }
 .link-tab-content {
   display: flex;
@@ -278,12 +294,28 @@ body {
   align-items: center;
   height: inherit;
 }
+.link-input-container {
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 12px;
+  color: #333333;
+}
+#platform {
+  height: 44px;
+  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 
 @media screen and (min-width: 700px) {
   .tab-name,
-  .navbar-heading {
+  .navbar-heading,
+  #preview-tab {
     display: contents;
   }
+
   .navbar-heading {
     font-weight: 700;
   }
@@ -291,7 +323,7 @@ body {
     gap: 10px;
   }
   .parent-container {
-    padding: 24px 25px;
+    padding: 24px 45px;
   }
   .devlinks-icon {
     font-size: 20px;
@@ -314,9 +346,12 @@ body {
     background-color: white;
     padding: 12px 20px;
 
-    width: 60%;
+    width: 55%;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .right-content-container {
+    width: 85%;
   }
 }
