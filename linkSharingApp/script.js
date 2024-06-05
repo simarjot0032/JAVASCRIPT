@@ -12,6 +12,7 @@ let remove = document.querySelectorAll(".link-remove-btn");
 let click = 0;
 let linkTab;
 let selectTag;
+let url;
 
 // navigation section
 profileTab.addEventListener("click", () => {
@@ -46,6 +47,7 @@ function createLinkPhone(Linkname) {
   let linkPhone = document.createElement("a");
   linkPhone.classList.add("real-link-tab");
   linkPhone.href = "#";
+  linkPhone.setAttribute("target", "_blank");
   linkPhone.innerHTML = `
   <div class="link-tab-content">
   <p class="link-name">${Linkname}</p>
@@ -61,6 +63,9 @@ function updatePlatformInMobile(platformName, index, elementindex) {
   <p class="link-name" >${platformName}</p>
   <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
   </div>`;
+}
+function updatedLink(link, index) {
+  document.querySelectorAll(".real-link-tab")[index].href = link;
 }
 //  Function for creaing the link in form for inputs in user
 function createLinkInputForm() {
@@ -80,6 +85,8 @@ function createLinkInputForm() {
   <option value="FaceBook">FaceBook</option>
   <option value="Stack Overflow">Stack OverFlow</option>
   </select>
+  <label for="url" class="label label-url">Link</label>
+  <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
   </div>
   </div>
   `;
@@ -102,6 +109,12 @@ function createLinkInputForm() {
   selectTag.forEach((element, index) => {
     element.addEventListener("change", () => {
       updatePlatformInMobile(element.value, index, element.selectedIndex);
+    });
+  });
+  url = document.querySelectorAll("#url");
+  url.forEach((element, index) => {
+    element.addEventListener("input", () => {
+      updatedLink(element.value, index);
     });
   });
 }
