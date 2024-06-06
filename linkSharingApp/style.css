@@ -235,13 +235,15 @@ button {
   font-size: 1.05rem;
   color: var(--fontcolor);
 }
-.save-container {
+.btn-container {
   border-top: 1px solid rgb(207, 207, 207);
   display: flex;
   justify-content: end;
   padding-top: 25px;
+  gap: 5px;
 }
-.save-btn {
+.preview-btn,
+.next-btn {
   padding: 12px 30px;
   border-radius: 8px;
   background-color: var(--primarycolor);
@@ -249,6 +251,14 @@ button {
   color: white;
   font-weight: 800;
   font-size: 1rem;
+}
+.next-btn {
+  background-color: transparent;
+  color: var(--primarycolor);
+  border: 2px solid var(--primarycolor);
+}
+.next-btn:hover {
+  background-color: var(--secondarycolor);
 }
 .link-user-input-container {
   height: 400px;
