@@ -62,11 +62,12 @@ function createLinkPhone(Linkname) {
   realLinkContainer.append(linkPhone);
 }
 function updatePlatformInMobile(platformName, index, elementindex) {
-  linkTab[index].innerHTML = `
-  <div class="link-tab-content" style="background-color:${color[elementindex]}">
+  linkTab[index].style.background = `${color[elementindex]}`;
+  linkTab[index].children[0].innerHTML = `
   <p class="link-name" >${platformName}</p>
   <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
   </div>`;
+  linkTab[index].style.borderRadius = "5px";
 }
 function updatedLink(link, index) {
   document.querySelectorAll(".real-link-tab")[index].href = link;
@@ -74,8 +75,10 @@ function updatedLink(link, index) {
 //  Function for creaing the link in form for inputs in user
 function createLinkInputForm() {
   inputContainer.style.display = "block";
-  inputContainer.innerHTML += `
-  <div class="user-input-container">
+  let newInputContainer = document.createElement("div");
+  newInputContainer.classList.add("user-input-container");
+  newInputContainer.innerHTML = `
+  
   <div class="user-input-header">
   <p class="link-heading">= Link</p>
   <button class="link-remove-btn">Remove</button>
@@ -92,9 +95,9 @@ function createLinkInputForm() {
   <label for="url" class="label label-url">Link</label>
   <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
   </div>
-  </div>
+ 
   `;
-
+  inputContainer.append(newInputContainer);
   // crate a link inside the phone
   createLinkPhone("Github");
   //  adds the eventlistner in remove btn
