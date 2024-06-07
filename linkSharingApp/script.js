@@ -14,17 +14,19 @@ let linkTab;
 let selectTag;
 let url;
 
-// navigation section
-profileTab.addEventListener("click", () => {
+// navigation section with function
+function toProfiletab() {
   profileTab.classList.add("activetab");
   linkTabNavigation.classList.remove("activetab");
   displayNone(linkaddSection);
-});
-linkTabNavigation.addEventListener("click", () => {
+}
+profileTab.addEventListener("click", () => toProfiletab());
+function toLinktab() {
   profileTab.classList.remove("activetab");
   linkTabNavigation.classList.add("acativetab");
   linkaddSection.style.display = "block";
-});
+}
+linkTabNavigation.addEventListener("click", () => toLinktab());
 // Function Section
 function displayNone(container) {
   container.style.display = "none";
