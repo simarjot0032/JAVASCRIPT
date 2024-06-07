@@ -78,7 +78,6 @@ function createLinkInputForm() {
   let newInputContainer = document.createElement("div");
   newInputContainer.classList.add("user-input-container");
   newInputContainer.innerHTML = `
-  
   <div class="user-input-header">
   <p class="link-heading">= Link</p>
   <button class="link-remove-btn">Remove</button>
@@ -95,21 +94,36 @@ function createLinkInputForm() {
   <label for="url" class="label label-url">Link</label>
   <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
   </div>
- 
+
   `;
   inputContainer.append(newInputContainer);
+
+  // inputContainer.innerHTML += `
+  // <div class="user-input-container">
+  // <div class="user-input-header">
+  // <p class="link-heading">= Link</p>
+  // <button class="link-remove-btn">Remove</button>
+  // </div>
+  // <div class="link-input-container">
+  // <label for="platform" class="label">Platform</label>
+  // <select id="platform">
+  // <option value="Github">Github</option>
+  // <option value="LinkedIn">LinkedIn</option>
+  // <option value="YouTube">YouTube</option>
+  // <option value="FaceBook">FaceBook</option>
+  // <option value="Stack Overflow">Stack OverFlow</option>
+  // </select>
+  // <label for="url" class="label label-url">Link</label>
+  // <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
+  // </div>
+  // </div>
+  // `;
+
   // crate a link inside the phone
   createLinkPhone("Github");
   //  adds the eventlistner in remove btn
   // Updating the value for remove variable
   // updating the value for linkTab varibles
-  linkTab = document.querySelectorAll(".real-link-tab");
-  remove = document.querySelectorAll(".link-remove-btn");
-  for (let i = 0; i < remove.length; i++) {
-    remove[i].addEventListener("click", () => {
-      removeInput(i);
-    });
-  }
 
   // updating the value for select tag
   selectTag = document.querySelectorAll("#platform");
@@ -124,6 +138,13 @@ function createLinkInputForm() {
       updatedLink(element.value, index);
     });
   });
+  linkTab = document.querySelectorAll(".real-link-tab");
+  remove = document.querySelectorAll(".link-remove-btn");
+  for (let i = 0; i < remove.length; i++) {
+    console.log(click, i + 1);
+    if (i + 1 == click)
+      remove[i]?.addEventListener("click", () => removeInput(i));
+  }
 }
 
 addNewLink.addEventListener("click", () => {
