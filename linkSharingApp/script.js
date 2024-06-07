@@ -51,7 +51,7 @@ function removeInput(index) {
 function createLinkPhone(Linkname) {
   let linkPhone = document.createElement("a");
   linkPhone.classList.add("real-link-tab");
-  linkPhone.href = "#";
+  linkPhone.href = "";
   linkPhone.setAttribute("target", "_blank");
   linkPhone.innerHTML = `
   <div class="link-tab-content">
@@ -121,9 +121,6 @@ function createLinkInputForm() {
 
   // crate a link inside the phone
   createLinkPhone("Github");
-  //  adds the eventlistner in remove btn
-  // Updating the value for remove variable
-  // updating the value for linkTab varibles
 
   // updating the value for select tag
   selectTag = document.querySelectorAll("#platform");
@@ -138,12 +135,15 @@ function createLinkInputForm() {
       updatedLink(element.value, index);
     });
   });
+  //  adds the eventlistner in remove btn
+  // Updating the value for remove variable
+  // updating the value for linkTab varibles
   linkTab = document.querySelectorAll(".real-link-tab");
   remove = document.querySelectorAll(".link-remove-btn");
+
   for (let i = 0; i < remove.length; i++) {
-    console.log(click, i + 1);
     if (i + 1 == click)
-      remove[i]?.addEventListener("click", () => removeInput(i));
+      remove[i].addEventListener("click", () => removeInput(i));
   }
 }
 
