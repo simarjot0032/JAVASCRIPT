@@ -102,9 +102,10 @@ button {
   justify-content: center;
   margin-top: 25px;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
+  margin-bottom: 40px;
 }
-.right-content-container {
+.right-forms-container {
   width: 100%;
   background-color: white;
   padding: 40px 40px 24px;
@@ -117,7 +118,6 @@ button {
   justify-content: center;
   padding: 68px 15px 0 15px;
 }
-
 .left-content-container,
 .mobile-background-container {
   display: none;
@@ -261,8 +261,7 @@ button {
   background-color: var(--secondarycolor);
 }
 .link-user-input-container {
-  height: 400px;
-  overflow: auto;
+  min-height: 400px;
 }
 .user-input-container {
   display: flex;
@@ -301,6 +300,7 @@ button {
   background-color: black;
   height: 44px;
   width: 236px;
+  border-radius: 5px;
 }
 .link-tab-content {
   display: flex;
@@ -339,11 +339,14 @@ button {
 }
 #platform:hover {
   border: 1px solid var(--primarycolor);
-  box-shadow: 0 0 25px 0px #633cffd4;
+  box-shadow: 0 0 35px 0px #633cffac;
 }
 #url:hover {
   border: 1px solid var(--primarycolor);
-  box-shadow: 0 0 25px 0px #633cffd4;
+  box-shadow: 0 0 35px 0px #633cffac;
+}
+.right-profile-form-container {
+  display: none;
 }
 @media screen and (min-width: 700px) {
   .tab-name,
@@ -381,13 +384,12 @@ button {
   .mobile-background-container {
     background-color: white;
     padding: 12px 20px;
-
     width: 55%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 50px;
   }
-  .right-content-container {
+  .right-forms-container {
     width: 85%;
   }
 }

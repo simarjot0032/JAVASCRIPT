@@ -9,6 +9,7 @@ let inputContainer = document.querySelector(".link-user-input-container");
 let realLinkContainer = document.querySelector(".real-links-container");
 let color = ["black", "#0077B5", "red", "#1877f2", "#f48024"];
 let remove = document.querySelectorAll(".link-remove-btn");
+let profileContainer = document.querySelector(".right-profile-form-container");
 let click = 0;
 let linkTab;
 let selectTag;
@@ -19,12 +20,14 @@ function toProfiletab() {
   profileTab.classList.add("activetab");
   linkTabNavigation.classList.remove("activetab");
   displayNone(linkaddSection);
+  profileContainer.style.display = "block";
 }
 profileTab.addEventListener("click", () => toProfiletab());
 function toLinktab() {
   profileTab.classList.remove("activetab");
   linkTabNavigation.classList.add("acativetab");
   linkaddSection.style.display = "block";
+  displayNone(profileContainer);
 }
 linkTabNavigation.addEventListener("click", () => toLinktab());
 // Function Section
@@ -60,7 +63,6 @@ function createLinkPhone(Linkname) {
 }
 function updatePlatformInMobile(platformName, index, elementindex) {
   linkTab[index].innerHTML = `
-  
   <div class="link-tab-content" style="background-color:${color[elementindex]}">
   <p class="link-name" >${platformName}</p>
   <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
