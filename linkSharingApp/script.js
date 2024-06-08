@@ -2,6 +2,7 @@
 // varibales section
 let profileTab = document.querySelector("#profiletab");
 let linkTabNavigation = document.querySelector("#linktab");
+let formContainer = document.querySelector(".right-forms-container");
 let linkaddSection = document.querySelector(".linkadd-form-section");
 let getStarted = document.querySelector(".get-started-container");
 let addNewLink = document.querySelector(".add-link-btn");
@@ -10,6 +11,8 @@ let realLinkContainer = document.querySelector(".real-links-container");
 let color = ["black", "#0077B5", "red", "#1877f2", "#f48024"];
 let remove = document.querySelectorAll(".link-remove-btn");
 let profileContainer = document.querySelector(".right-profile-form-container");
+let previewbtn = document.querySelector(".preview-btn");
+let previewNav = document.querySelector(".right-navbar-container");
 let click = 0;
 let linkTab;
 let selectTag;
@@ -29,10 +32,22 @@ function toLinktab() {
   linkaddSection.style.display = "block";
   displayNone(profileContainer);
 }
+
 linkTabNavigation.addEventListener("click", () => toLinktab());
 // Function Section
 function displayNone(container) {
   container.style.display = "none";
+}
+function togglePreview(btn) {
+  formContainer.classList.toggle("none");
+  formContainer.classList.contains("none")
+    ? (btn.innerHTML = "Back To Editor")
+    : (btn.innerHTML = `<i class="fa-solid fa-eye navbar-icons"></i
+    ><span id="preview-tab">Preview</span>`);
+  document
+    .querySelector(".mobile-background-container")
+    .classList.toggle("visible");
+  document.querySelector(".center-navbar-container").classList.toggle("none");
 }
 // Fucntion for removing the link from form and as well as from the phone
 function removeInput(index) {
@@ -158,3 +173,8 @@ addNewLink.addEventListener("click", () => {
   //  add the link in form and the phone but simontalniously using fucntion refer the createLinkInputForm function above declared for better understanding
   createLinkInputForm();
 });
+
+previewNav.addEventListener("click", () => {
+  togglePreview(previewNav);
+});
+previewbtn.addEventListener("click", () => togglePreview(previewNav));
