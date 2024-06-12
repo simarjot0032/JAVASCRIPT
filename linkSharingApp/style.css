@@ -49,7 +49,7 @@ button {
   border-radius: 10px;
 }
 .center-navbar-container {
-  gap: 5vw;
+  gap: 2vw;
 }
 .activetab {
   background-color: var(--secondarycolor);
@@ -101,10 +101,11 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 25px;
-  justify-content: space-between;
-  height: 100vh;
+  /* justify-content: space-between; */
+  min-height: 100vh;
+  margin-bottom: 40px;
 }
-.right-content-container {
+.right-forms-container {
   width: 100%;
   background-color: white;
   padding: 40px 40px 24px;
@@ -114,14 +115,15 @@ button {
   height: 635px;
   width: 308px;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding: 68px 15px 0 15px;
 }
-
-.left-content-container,
+.left-content-container {
+  user-select: none;
+}
 .mobile-background-container {
   display: none;
-  user-select: none;
 }
 .user-details-container {
   display: flex;
@@ -227,7 +229,6 @@ button {
 }
 .get-started-heading {
   font-size: 2rem;
-  line-height: 4.2rem;
 }
 .get-started-description {
   text-align: center;
@@ -235,13 +236,15 @@ button {
   font-size: 1.05rem;
   color: var(--fontcolor);
 }
-.save-container {
+.btn-container {
   border-top: 1px solid rgb(207, 207, 207);
   display: flex;
-  justify-content: end;
+  justify-content: center;
   padding-top: 25px;
+  gap: 5px;
 }
-.save-btn {
+.preview-btn,
+.next-btn {
   padding: 12px 30px;
   border-radius: 8px;
   background-color: var(--primarycolor);
@@ -250,9 +253,16 @@ button {
   font-weight: 800;
   font-size: 1rem;
 }
+.next-btn {
+  background-color: transparent;
+  color: var(--primarycolor);
+  border: 2px solid var(--primarycolor);
+}
+.next-btn:hover {
+  background-color: var(--secondarycolor);
+}
 .link-user-input-container {
-  height: 400px;
-  overflow: auto;
+  min-height: 400px;
 }
 .user-input-container {
   display: flex;
@@ -291,6 +301,7 @@ button {
   background-color: black;
   height: 44px;
   width: 236px;
+  border-radius: 5px;
 }
 .link-tab-content {
   display: flex;
@@ -329,11 +340,20 @@ button {
 }
 #platform:hover {
   border: 1px solid var(--primarycolor);
-  box-shadow: 0 0 25px 0px #633cffd4;
+  box-shadow: 0 0 35px 0px #633cffac;
 }
 #url:hover {
   border: 1px solid var(--primarycolor);
-  box-shadow: 0 0 25px 0px #633cffd4;
+  box-shadow: 0 0 35px 0px #633cffac;
+}
+.right-profile-form-container {
+  display: none;
+}
+.none {
+  display: none;
+}
+.visible {
+  display: block;
 }
 @media screen and (min-width: 700px) {
   .tab-name,
@@ -361,9 +381,11 @@ button {
 }
 
 @media screen and (min-width: 900px) {
-  .left-content-container,
   .mobile-background-container {
     display: block;
+  }
+  .btn-container {
+    justify-content: end;
   }
   .share-app-content-container {
     gap: 24px;
@@ -371,13 +393,12 @@ button {
   .mobile-background-container {
     background-color: white;
     padding: 12px 20px;
-
     width: 55%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: 50px;
   }
-  .right-content-container {
+  .right-forms-container {
     width: 85%;
   }
 }

@@ -2,6 +2,7 @@
 // varibales section
 let profileTab = document.querySelector("#profiletab");
 let linkTabNavigation = document.querySelector("#linktab");
+let formContainer = document.querySelector(".right-forms-container");
 let linkaddSection = document.querySelector(".linkadd-form-section");
 let getStarted = document.querySelector(".get-started-container");
 let addNewLink = document.querySelector(".add-link-btn");
@@ -9,25 +10,44 @@ let inputContainer = document.querySelector(".link-user-input-container");
 let realLinkContainer = document.querySelector(".real-links-container");
 let color = ["black", "#0077B5", "red", "#1877f2", "#f48024"];
 let remove = document.querySelectorAll(".link-remove-btn");
+let profileContainer = document.querySelector(".right-profile-form-container");
+let previewbtn = document.querySelector(".preview-btn");
+let previewNav = document.querySelector(".right-navbar-container");
 let click = 0;
 let linkTab;
 let selectTag;
 let url;
 
-// navigation section
-profileTab.addEventListener("click", () => {
+// navigation section with function
+function toProfiletab() {
   profileTab.classList.add("activetab");
   linkTabNavigation.classList.remove("activetab");
   displayNone(linkaddSection);
-});
-linkTabNavigation.addEventListener("click", () => {
+  profileContainer.style.display = "block";
+}
+profileTab.addEventListener("click", () => toProfiletab());
+function toLinktab() {
   profileTab.classList.remove("activetab");
   linkTabNavigation.classList.add("acativetab");
   linkaddSection.style.display = "block";
-});
+  displayNone(profileContainer);
+}
+
+linkTabNavigation.addEventListener("click", () => toLinktab());
 // Function Section
 function displayNone(container) {
   container.style.display = "none";
+}
+function togglePreview(btn) {
+  formContainer.classList.toggle("none");
+  formContainer.classList.contains("none")
+    ? (btn.innerHTML = "Back To Editor")
+    : (btn.innerHTML = `<i class="fa-solid fa-eye navbar-icons"></i
+    ><span id="preview-tab">Preview</span>`);
+  document
+    .querySelector(".mobile-background-container")
+    .classList.toggle("visible");
+  document.querySelector(".center-navbar-container").classList.toggle("none");
 }
 // Fucntion for removing the link from form and as well as from the phone
 function removeInput(index) {
@@ -46,7 +66,7 @@ function removeInput(index) {
 function createLinkPhone(Linkname) {
   let linkPhone = document.createElement("a");
   linkPhone.classList.add("real-link-tab");
-  linkPhone.href = "#";
+  linkPhone.href = "";
   linkPhone.setAttribute("target", "_blank");
   linkPhone.innerHTML = `
   <div class="link-tab-content">
@@ -57,12 +77,12 @@ function createLinkPhone(Linkname) {
   realLinkContainer.append(linkPhone);
 }
 function updatePlatformInMobile(platformName, index, elementindex) {
-  linkTab[index].innerHTML = `
-  
-  <div class="link-tab-content" style="background-color:${color[elementindex]}">
+  linkTab[index].style.background = `${color[elementindex]}`;
+  linkTab[index].children[0].innerHTML = `
   <p class="link-name" >${platformName}</p>
   <i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i>
   </div>`;
+  linkTab[index].style.borderRadius = "5px";
 }
 function updatedLink(link, index) {
   document.querySelectorAll(".real-link-tab")[index].href = link;
@@ -70,8 +90,9 @@ function updatedLink(link, index) {
 //  Function for creaing the link in form for inputs in user
 function createLinkInputForm() {
   inputContainer.style.display = "block";
-  inputContainer.innerHTML += `
-  <div class="user-input-container">
+  let newInputContainer = document.createElement("div");
+  newInputContainer.classList.add("user-input-container");
+  newInputContainer.innerHTML = `
   <div class="user-input-header">
   <p class="link-heading">= Link</p>
   <button class="link-remove-btn">Remove</button>
@@ -88,21 +109,33 @@ function createLinkInputForm() {
   <label for="url" class="label label-url">Link</label>
   <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
   </div>
-  </div>
+
   `;
+  inputContainer.append(newInputContainer);
+
+  // inputContainer.innerHTML += `
+  // <div class="user-input-container">
+  // <div class="user-input-header">
+  // <p class="link-heading">= Link</p>
+  // <button class="link-remove-btn">Remove</button>
+  // </div>
+  // <div class="link-input-container">
+  // <label for="platform" class="label">Platform</label>
+  // <select id="platform">
+  // <option value="Github">Github</option>
+  // <option value="LinkedIn">LinkedIn</option>
+  // <option value="YouTube">YouTube</option>
+  // <option value="FaceBook">FaceBook</option>
+  // <option value="Stack Overflow">Stack OverFlow</option>
+  // </select>
+  // <label for="url" class="label label-url">Link</label>
+  // <input type="url" id="url" placeholder="e.g. https://www.github.com/username"/>
+  // </div>
+  // </div>
+  // `;
 
   // crate a link inside the phone
   createLinkPhone("Github");
-  //  adds the eventlistner in remove btn
-  // Updating the value for remove variable
-  // updating the value for linkTab varibles
-  linkTab = document.querySelectorAll(".real-link-tab");
-  remove = document.querySelectorAll(".link-remove-btn");
-  for (let i = 0; i < remove.length; i++) {
-    remove[i].addEventListener("click", () => {
-      removeInput(i);
-    });
-  }
 
   // updating the value for select tag
   selectTag = document.querySelectorAll("#platform");
@@ -117,6 +150,16 @@ function createLinkInputForm() {
       updatedLink(element.value, index);
     });
   });
+  //  adds the eventlistner in remove btn
+  // Updating the value for remove variable
+  // updating the value for linkTab varibles
+  linkTab = document.querySelectorAll(".real-link-tab");
+  remove = document.querySelectorAll(".link-remove-btn");
+
+  for (let i = 0; i < remove.length; i++) {
+    if (i + 1 == click)
+      remove[i].addEventListener("click", () => removeInput(i));
+  }
 }
 
 addNewLink.addEventListener("click", () => {
@@ -130,3 +173,8 @@ addNewLink.addEventListener("click", () => {
   //  add the link in form and the phone but simontalniously using fucntion refer the createLinkInputForm function above declared for better understanding
   createLinkInputForm();
 });
+
+previewNav.addEventListener("click", () => {
+  togglePreview(previewNav);
+});
+previewbtn.addEventListener("click", () => togglePreview(previewNav));
