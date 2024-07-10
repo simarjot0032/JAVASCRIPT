@@ -13,6 +13,11 @@ let remove = document.querySelectorAll(".link-remove-btn");
 let profileContainer = document.querySelector(".right-profile-form-container");
 let previewbtn = document.querySelector(".preview-btn");
 let previewNav = document.querySelector(".right-navbar-container");
+let userInputs = document.querySelectorAll(".input");
+let userDetailForm = document.querySelector("#user-form");
+let uploadImageContainer = document.querySelector(".upload-image");
+let userImagePhone = document.querySelector(".user-img");
+let userImageUploadBtn = document.querySelector("#user-file");
 let click = 0;
 let linkTab;
 let selectTag;
@@ -178,3 +183,39 @@ previewNav.addEventListener("click", () => {
   togglePreview(previewNav);
 });
 previewbtn.addEventListener("click", () => togglePreview(previewNav));
+userDetailForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // user Input Validator
+  userInputs.forEach((input) => {
+    if (input.value == "") {
+      input.style.borderColor = "red";
+    }
+  });
+});
+userInputs.forEach((input) => {
+  input.addEventListener("input", () => {
+    if (input.value == "") {
+      input.style.borderColor = "red";
+    } else {
+      input.style.borderColor = "var(--skcolor)";
+    }
+  });
+});
+uploadImageContainer.addEventListener("click", () => {
+  userImageUploadBtn.click();
+});
+userImageUploadBtn.addEventListener("change", () => {
+  let file = userImageUploadBtn.files[0];
+  if (file) {
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.addEventListener("load", () => {
+      uploadImageContainer.style.background = `url("${fileReader.result}") center`;
+      uploadImageContainer.style.backgroundSize = "cover";
+      uploadImageContainer.style.backgroundRepeat = "no-repeat";
+
+      userImagePhone.setAttribute("src", fileReader.result);
+    });
+  }
+});
