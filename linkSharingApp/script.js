@@ -18,6 +18,14 @@ let userDetailForm = document.querySelector("#user-form");
 let uploadImageContainer = document.querySelector(".upload-image");
 let userImagePhone = document.querySelector(".user-img");
 let userImageUploadBtn = document.querySelector("#user-file");
+let fnameInput = document.querySelector("#fname");
+let lnameInput = document.querySelector("#lname");
+let emailInput = document.querySelector(".input-email");
+let fanme = document.querySelector(".fname");
+let lname = document.querySelector(".lname");
+let email = document.querySelector(".user-email");
+let saveBtn = document.querySelector(".save-btn");
+let nextBtn = document.querySelector(".next-btn");
 let click = 0;
 let linkTab;
 let selectTag;
@@ -182,6 +190,7 @@ addNewLink.addEventListener("click", () => {
 previewNav.addEventListener("click", () => {
   togglePreview(previewNav);
 });
+saveBtn.addEventListener("click", () => [togglePreview(previewNav)]);
 previewbtn.addEventListener("click", () => togglePreview(previewNav));
 userDetailForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -219,3 +228,16 @@ userImageUploadBtn.addEventListener("change", () => {
     });
   }
 });
+function updateUserDetails(elementUpdation, element) {
+  elementUpdation.innerHTML = element?.value;
+}
+fnameInput.addEventListener("input", () => {
+  updateUserDetails(fanme, fnameInput);
+});
+lnameInput.addEventListener("input", () => {
+  updateUserDetails(lname, lnameInput);
+});
+emailInput.addEventListener("input", () => {
+  updateUserDetails(email, emailInput);
+});
+nextBtn.addEventListener("click", () => [toProfiletab()]);
