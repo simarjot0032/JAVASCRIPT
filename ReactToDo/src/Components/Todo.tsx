@@ -1,11 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "../Styles/Todo.scss";
 export default function Todo() {
+  const [todo, settodo] = useState<String[]>([]);
   let todoInput = useRef<HTMLInputElement>(null);
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    console.log(todoInput.current?.value);
+    let newtodoItem = todoInput.current?.value;
+    newtodoItem ? settodo([...todo, newtodoItem]) : "";
   }
+
   return (
     <>
       <div className="todo-container">
@@ -26,6 +29,9 @@ export default function Todo() {
                 />
               </label>
             </form>
+          </div>
+          <div className="todo-task-container">
+            {todo.length === 0 ? "Not Tasks Found" : ""}
           </div>
         </div>
       </div>
