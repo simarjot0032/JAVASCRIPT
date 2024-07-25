@@ -1,11 +1,11 @@
-import { useState } from "react";
-
-import "./Styles/index.scss";
+import Todo from "./Components/Todo";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <>React To Do using loaclstorage</>;
+  return (
+    <>
+      <Todo></Todo>
+    </>
+  );
 }
 
 export default App;
