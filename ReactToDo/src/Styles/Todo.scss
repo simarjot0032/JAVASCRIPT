@@ -1,7 +1,7 @@
 @import "./Vasriables";
 .todo-container {
   background-color: $bgcolor;
-  height: 100lvh;
+  min-height: 100lvh;
   position: relative;
   display: flex;
   justify-content: center;
@@ -39,7 +39,11 @@
   border-radius: 5px;
   display: flex;
   gap: 10px;
+  & {
+    margin: 10px 0 0 0;
+  }
 }
+
 .label-input-box {
   width: 100%;
   display: flex;

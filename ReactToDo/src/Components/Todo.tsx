@@ -1,14 +1,48 @@
-import { useRef, useState } from "react";
+import { ReactElement, useRef, useState } from "react";
 import "../Styles/Todo.scss";
+import "../Styles/ToDoItem.scss";
+import toast from "react-hot-toast";
+import { FaRegCircleXmark } from "react-icons/fa6";
+export type TODO = {
+  text: string;
+  checked: boolean;
+};
 export default function Todo() {
-  const [todo, settodo] = useState<String[]>([]);
+  const [todo, settodo] = useState<TODO[]>([]);
   let todoInput = useRef<HTMLInputElement>(null);
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    let newtodoItem = todoInput.current?.value;
-    newtodoItem ? settodo([...todo, newtodoItem]) : "";
+    if (todoInput.current && todoInput.current.value !== "") {
+      let newtodoItem: TODO = {
+        text: todoInput.current.value,
+        checked: false,
+      };
+      if (newtodoItem) {
+        settodo([...todo, newtodoItem]);
+        todoInput.current ? (todoInput.current.value = "") : "";
+        toast.success("Item Added");
+      }
+    } else {
+      toast.error("please enter something");
+    }
   }
-
+  function handleRemove(index: number) {
+    settodo(todo.filter((tsak, i) => i !== index));
+    toast.success("Task Deleted");
+  }
+  function handleChecking(index: number) {
+    settodo(
+      todo.map((task, i) => (i === index ? { ...task, checked: true } : task))
+    );
+    toast.success("Task Completed");
+  }
+  function handleUnchecking(index: number) {
+    settodo(
+      todo.map((task, i) => (i === index ? { ...task, checked: false } : task))
+    );
+    toast.error("Task Inprogress");
+  }
+  console.log(todo);
   return (
     <>
       <div className="todo-container">
@@ -22,7 +56,7 @@ export default function Todo() {
                 <input
                   type="text"
                   id="todo-input"
-                  placeholder="Create A New ToDo..."
+                  placeholder="Create a new todo..."
                   autoComplete="off"
                   ref={todoInput}
                   autoFocus
@@ -31,7 +65,39 @@ export default function Todo() {
             </form>
           </div>
           <div className="todo-task-container">
-            {todo.length === 0 ? "Not Tasks Found" : ""}
+            {todo.length === 0
+              ? "Not Tasks Found"
+              : todo.map((todoelement, index) => {
+                  return (
+                    <div className="each-todo-item">
+                      <div className="each-todo-item-content-container">
+                        <input
+                          type="checkbox"
+                          name=""
+                          id=""
+                          onChange={(e) => {
+                            e.target.checked
+                              ? handleChecking(index)
+                              : handleUnchecking(index);
+                          }}
+                        />
+
+                        <div className="each-todo-item-content">
+                          {todoelement.checked ? (
+                            <span className="task-completed">
+                              {todoelement.text}
+                            </span>
+                          ) : (
+                            todoelement.text
+                          )}
+                        </div>
+                      </div>
+                      <div className="each-item-todo-btn">
+                        <FaRegCircleXmark onClick={() => handleRemove(index)} />
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
         </div>
       </div>
