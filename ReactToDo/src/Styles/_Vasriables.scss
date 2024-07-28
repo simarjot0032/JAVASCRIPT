@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+}
+$bgcolor: #161722;
+$todo-box: #25273c;
+$todo-text-color: #cacde8;
+$todo-controls-color: #4d5066;
+$control-active-color: #3a7bfd;
+$task-completed-text-color: #575979;
+$container-padding: 50px 25px;
+$primary-font: "Open Sans", sans-serif;
+$heading-font-size: 2rem;
+$todo-text-font-size: 1.05rem;
+$font-weigth: (
+  "basic": 400,
+  "regular": 500,
+);

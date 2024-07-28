@@ -1,0 +1,15 @@
+@import "./Vasriables";
+.each-todo-item {
+  border-bottom: 1px solid $todo-text-color;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  &-content-container {
+    display: flex;
+    gap: 5px;
+  }
+}
+.task-completed {
+  text-decoration: line-through;
+  color: $task-completed-text-color;
+}
