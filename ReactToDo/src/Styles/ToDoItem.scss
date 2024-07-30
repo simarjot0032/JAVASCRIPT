@@ -1,6 +1,6 @@
 @import "./Vasriables";
 .each-todo-item {
-  border-bottom: 1px solid $todo-text-color;
+  border-bottom: 1px solid $task-completed-text-color;
   padding: 10px;
   display: flex;
   justify-content: space-between;

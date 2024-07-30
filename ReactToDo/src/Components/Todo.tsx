@@ -42,7 +42,15 @@ export default function Todo() {
     );
     toast.error("Task Inprogress");
   }
-  console.log(todo);
+  function allToDo() {
+    settodo([...todo]);
+  }
+  function onlyActiveTask() {
+    settodo(todo.filter((task) => task.checked !== true));
+  }
+  function onlyCompletedTask() {
+    settodo(todo.filter((task) => task.checked === true));
+  }
   return (
     <>
       <div className="todo-container">
@@ -98,6 +106,11 @@ export default function Todo() {
                     </div>
                   );
                 })}
+            <div className="todo-controls-container">
+              <div className="todo-count"></div>
+              <div className="todo-shows-container"></div>
+              div.todo-clear
+            </div>
           </div>
         </div>
       </div>
