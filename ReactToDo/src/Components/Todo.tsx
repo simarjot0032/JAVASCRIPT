@@ -10,6 +10,7 @@ export type TODO = {
 export default function Todo() {
   const [todo, settodo] = useState<TODO[]>([]);
   let todoInput = useRef<HTMLInputElement>(null);
+  const [filter, setfilter] = useState("all");
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (todoInput.current && todoInput.current.value !== "") {
@@ -42,14 +43,16 @@ export default function Todo() {
     );
     toast.error("Task Inprogress");
   }
-  function allToDo() {
-    settodo([...todo]);
-  }
-  function onlyActiveTask() {
-    settodo(todo.filter((task) => task.checked !== true));
-  }
-  function onlyCompletedTask() {
-    settodo(todo.filter((task) => task.checked === true));
+  function filteringTodo() {
+    if (filter === "all") {
+      return todo;
+    } else if (filter === "active") {
+      return todo.filter((task) => task.checked !== true);
+    } else if (filter === "completed") {
+      return todo.filter((task) => task.checked === true);
+    } else {
+      return todo;
+    }
   }
   return (
     <>
@@ -75,7 +78,7 @@ export default function Todo() {
           <div className="todo-task-container">
             {todo.length === 0
               ? "Not Tasks Found"
-              : todo.map((todoelement, index) => {
+              : filteringTodo().map((todoelement, index) => {
                   return (
                     <div className="each-todo-item">
                       <div className="each-todo-item-content-container">
@@ -107,9 +110,36 @@ export default function Todo() {
                   );
                 })}
             <div className="todo-controls-container">
-              <div className="todo-count"></div>
-              <div className="todo-shows-container"></div>
-              div.todo-clear
+              <div className="todo-count">
+                {todo.filter((e) => e.checked === false).length} Task Remaining
+              </div>
+              <div className="todo-shows-container">
+                <span className="all-control" onClick={() => setfilter("all")}>
+                  All
+                </span>
+                <span
+                  className="active-control"
+                  onClick={() => setfilter("active")}
+                >
+                  Active
+                </span>
+                <span
+                  className="completed-control"
+                  onClick={() => setfilter("completed")}
+                >
+                  Completed
+                </span>
+              </div>
+              <div className="todo-clear-btn">
+                <span
+                  className="clear-btn"
+                  onClick={() => {
+                    settodo([]);
+                  }}
+                >
+                  Clear Todo
+                </span>
+              </div>
             </div>
           </div>
         </div>
