@@ -16,6 +16,9 @@ let speaker = window.speechSynthesis;
 let voices = [];
 let chunks = [];
 let recorder;
+let speaking;
+let playing;
+let pasued;
 
 // Function Section
 function tabSwitch(toBeInactive, toBeActive) {
@@ -69,7 +72,7 @@ pitch.addEventListener("change", (e) => {
   pitchValue = e.target.value;
 });
 rate.addEventListener("change", (e) => {
-  rateValue = e.target.value;
+  rateValue = parseFloat(e.target.value);
 });
 playBtn.addEventListener("click", () => {
   if (text.value == "") {
@@ -80,12 +83,24 @@ playBtn.addEventListener("click", () => {
     speaking.onend = btnSwitcher;
   } else {
     btnSwitcher();
-    let speaking = new SpeechSynthesisUtterance(text.value);
+    speaking = new SpeechSynthesisUtterance(text.value);
+    playing = true;
+    pasued = false;
     speaking.voice = currrentVoice;
     speaking.pitch = pitchValue;
     speaking.rate = rateValue;
-    // recorder = new MediaRecorder();
+
     speaker.speak(speaking);
-    speaking.onend = btnSwitcher;
+    speaking.onend = () => {
+      btnSwitcher();
+      playing = false;
+      pasued = false;
+    };
   }
 });
+function pause() {
+  let pauseBtn = document.querySelector(".fa-pause");
+  pauseBtn.addEventListener("click", () => {
+    speaker.pause();
+  });
+}
