@@ -1,6 +1,6 @@
 @import "./Vasriables";
 .each-todo-item {
-  border-bottom: 1px solid $todo-text-color;
+  border-bottom: 1px solid $task-completed-text-color;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -12,4 +12,27 @@
 .task-completed {
   text-decoration: line-through;
   color: $task-completed-text-color;
+}
+.todo-controls-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.todo-count {
+  color: $task-completed-text-color;
+}
+.todo-shows-container {
+  display: flex;
+  gap: 10px;
+  & {
+    font-weight: 500;
+    user-select: none;
+  }
+  & > span:hover {
+    color: $control-active-color;
+    cursor: pointer;
+  }
+}
+.clear-btn {
+  cursor: pointer;
 }

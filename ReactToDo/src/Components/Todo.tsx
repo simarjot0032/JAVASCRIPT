@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "../Styles/Todo.scss";
 import "../Styles/ToDoItem.scss";
 import toast from "react-hot-toast";
@@ -10,6 +10,7 @@ export type TODO = {
 export default function Todo() {
   const [todo, settodo] = useState<TODO[]>([]);
   let todoInput = useRef<HTMLInputElement>(null);
+  const [filter, setfilter] = useState("all");
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (todoInput.current && todoInput.current.value !== "") {
@@ -42,7 +43,17 @@ export default function Todo() {
     );
     toast.error("Task Inprogress");
   }
-  console.log(todo);
+  function filteringTodo() {
+    if (filter === "all") {
+      return todo;
+    } else if (filter === "active") {
+      return todo.filter((task) => task.checked !== true);
+    } else if (filter === "completed") {
+      return todo.filter((task) => task.checked === true);
+    } else {
+      return todo;
+    }
+  }
   return (
     <>
       <div className="todo-container">
@@ -67,7 +78,7 @@ export default function Todo() {
           <div className="todo-task-container">
             {todo.length === 0
               ? "Not Tasks Found"
-              : todo.map((todoelement, index) => {
+              : filteringTodo().map((todoelement, index) => {
                   return (
                     <div className="each-todo-item">
                       <div className="each-todo-item-content-container">
@@ -98,6 +109,38 @@ export default function Todo() {
                     </div>
                   );
                 })}
+            <div className="todo-controls-container">
+              <div className="todo-count">
+                {todo.filter((e) => e.checked === false).length} Task Remaining
+              </div>
+              <div className="todo-shows-container">
+                <span className="all-control" onClick={() => setfilter("all")}>
+                  All
+                </span>
+                <span
+                  className="active-control"
+                  onClick={() => setfilter("active")}
+                >
+                  Active
+                </span>
+                <span
+                  className="completed-control"
+                  onClick={() => setfilter("completed")}
+                >
+                  Completed
+                </span>
+              </div>
+              <div className="todo-clear-btn">
+                <span
+                  className="clear-btn"
+                  onClick={() => {
+                    settodo([]);
+                  }}
+                >
+                  Clear Todo
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
