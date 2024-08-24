@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "../Styles/Todo.scss";
 import "../Styles/ToDoItem.scss";
 import toast from "react-hot-toast";
