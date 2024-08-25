@@ -17,8 +17,8 @@ let voices = [];
 let chunks = [];
 let recorder;
 let speaking;
-let playing;
-let pasued;
+let playing = false;
+let pasued = false;
 
 // Function Section
 function tabSwitch(toBeInactive, toBeActive) {
@@ -74,7 +74,16 @@ pitch.addEventListener("change", (e) => {
 rate.addEventListener("change", (e) => {
   rateValue = parseFloat(e.target.value);
 });
-playBtn.addEventListener("click", () => {
+btn.addEventListener("click", () => {
+  if (!playing && !pasued) {
+    play();
+  } else if (playing && !pasued) {
+    pause();
+  } else if (!playing && pasued) {
+    resume();
+  }
+});
+function play() {
   if (text.value == "") {
     btnSwitcher();
     let speaking = new SpeechSynthesisUtterance("Please enter something");
@@ -97,10 +106,16 @@ playBtn.addEventListener("click", () => {
       pasued = false;
     };
   }
-});
+}
 function pause() {
-  let pauseBtn = document.querySelector(".fa-pause");
-  pauseBtn.addEventListener("click", () => {
-    speaker.pause();
-  });
+  btnSwitcher();
+  pasued = true;
+  playing = false;
+  speaker.pause();
+}
+function resume() {
+  btnSwitcher();
+  playing = true;
+  pasued = false;
+  speaker.resume();
 }
