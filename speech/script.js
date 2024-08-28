@@ -136,19 +136,24 @@ function resume() {
 function sttConvetor() {
   listing = true;
   transcript = false;
-  listner.start();
-  listner.continuous = false;
-  micBtn.classList.add("listening");
-}
-function transcriptor() {
-  listner.stop();
-  listing = false;
-  transcript = false;
-  micBtn.classList.remove("listening");
+  listner.continuous = true;
+  listner.interimResults = false;
+  listner.addEventListener("speechend", () => {
+    micBtn.classList.remove("listening");
+    transcriptor();
+  });
   listner.onresult = (voice) => {
     speechTextContainer.value = voice.results[0][0].transcript;
     console.log(voice.results[0][0].transcript);
   };
+  listner.start();
+  micBtn.classList.add("listening");
+}
+function transcriptor() {
+  listing = false;
+  transcript = false;
+  listner.stop();
+  micBtn.classList.remove("listening");
 }
 function copyText() {
   copyBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
