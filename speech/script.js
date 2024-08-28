@@ -16,6 +16,9 @@ let speaker = window.speechSynthesis;
 let voices = [];
 let chunks = [];
 let recorder;
+let speaking;
+let playing = false;
+let pasued = false;
 
 // Function Section
 function tabSwitch(toBeInactive, toBeActive) {
@@ -69,9 +72,18 @@ pitch.addEventListener("change", (e) => {
   pitchValue = e.target.value;
 });
 rate.addEventListener("change", (e) => {
-  rateValue = e.target.value;
+  rateValue = parseFloat(e.target.value);
 });
-playBtn.addEventListener("click", () => {
+btn.addEventListener("click", () => {
+  if (!playing && !pasued) {
+    play();
+  } else if (playing && !pasued) {
+    pause();
+  } else if (!playing && pasued) {
+    resume();
+  }
+});
+function play() {
   if (text.value == "") {
     btnSwitcher();
     let speaking = new SpeechSynthesisUtterance("Please enter something");
@@ -80,12 +92,30 @@ playBtn.addEventListener("click", () => {
     speaking.onend = btnSwitcher;
   } else {
     btnSwitcher();
-    let speaking = new SpeechSynthesisUtterance(text.value);
+    speaking = new SpeechSynthesisUtterance(text.value);
+    playing = true;
+    pasued = false;
     speaking.voice = currrentVoice;
     speaking.pitch = pitchValue;
     speaking.rate = rateValue;
-    // recorder = new MediaRecorder();
+
     speaker.speak(speaking);
-    speaking.onend = btnSwitcher;
+    speaking.onend = () => {
+      btnSwitcher();
+      playing = false;
+      pasued = false;
+    };
   }
-});
+}
+function pause() {
+  btnSwitcher();
+  pasued = true;
+  playing = false;
+  speaker.pause();
+}
+function resume() {
+  btnSwitcher();
+  playing = true;
+  pasued = false;
+  speaker.resume();
+}
