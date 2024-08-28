@@ -10,15 +10,21 @@ let currrentVoice;
 let btn = document.querySelector("#play-pause");
 let playBtn = document.querySelector(".fa-play");
 let pauseBtn = document.querySelector(".fa-pause");
+let micBtn = document.querySelector(".fa-microphone");
+let speechTextContainer = document.querySelector("#speech");
+let copyBtn = document.querySelector("#copy-btn");
 let pitchValue = 1;
 let rateValue = 1;
 let speaker = window.speechSynthesis;
+let listner = new webkitSpeechRecognition();
 let voices = [];
 let chunks = [];
 let recorder;
 let speaking;
 let playing = false;
 let pasued = false;
+let listing = false;
+let transcript = false;
 
 // Function Section
 function tabSwitch(toBeInactive, toBeActive) {
@@ -83,6 +89,14 @@ btn.addEventListener("click", () => {
     resume();
   }
 });
+micBtn.addEventListener("click", () => {
+  if (!listing && !transcript) {
+    sttConvetor();
+  } else if (listing && !transcript) {
+    transcriptor();
+  }
+});
+copyBtn.addEventListener("click", copyText);
 function play() {
   if (text.value == "") {
     btnSwitcher();
@@ -118,4 +132,30 @@ function resume() {
   playing = true;
   pasued = false;
   speaker.resume();
+}
+function sttConvetor() {
+  listing = true;
+  transcript = false;
+  listner.start();
+  listner.continuous = false;
+  micBtn.classList.add("listening");
+}
+function transcriptor() {
+  listner.stop();
+  listing = false;
+  transcript = false;
+  micBtn.classList.remove("listening");
+  listner.onresult = (voice) => {
+    speechTextContainer.value = voice.results[0][0].transcript;
+    console.log(voice.results[0][0].transcript);
+  };
+}
+function copyText() {
+  copyBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+  copyBtn.setAttribute("disabled", "true");
+  navigator.clipboard.writeText(speechTextContainer.value);
+  setTimeout(() => {
+    copyBtn.innerHTML = "Copy Text";
+    copyBtn.removeAttribute("disabled");
+  }, 1500);
 }
